@@ -1,4 +1,4 @@
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 
 let requestCount = 0;
 const updateActivityIndicator = (increment = false) => {
@@ -13,7 +13,8 @@ const updateActivityIndicator = (increment = false) => {
 
 export default class NetworkActivityIndicator {
     static RegisterToAxiosInstance(axiosInstance) {
-        if (axiosInstance
+        if (Platform.OS == 'ios'
+            && axiosInstance
             && axiosInstance.interceptors
             && axiosInstance.interceptors.request
             && axiosInstance.interceptors.response) {
